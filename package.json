@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.2",
+    "file-system": "^2.2.2"
+  }
+}

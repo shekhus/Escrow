@@ -1,12 +1,17 @@
-const path = require("path");
+const fs =require('fs');
+const HDWalletProvider = require('truffle-hdwallet-provider');
 
-module.exports = {
-  // See <http://truffleframework.com/docs/advanced/configuration>
-  // to customize your Truffle configuration!
-  contracts_build_directory: path.join(__dirname, "client/src/contracts"),
-  compilers: {
-    solc: {
-      version: '0.8.0'
+const secrets = JSON.parse(fs.readFileSync('.secrets').toString().trim());
+// truffle-hdwallet-provider
+module.exports = {networks : {
+    goerli:{
+        provider:() =>
+            new HDWalletProvider(
+                secrets.seed,
+                `https://goerli.infura.io/v3/${secrets.projectId}`
+
+            ),
+            network_id :5
+            }
+        }
     }
-  }
-};
